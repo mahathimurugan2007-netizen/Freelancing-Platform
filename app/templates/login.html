@@ -1,0 +1,41 @@
+{% include 'header.html' %}
+<div class="container">
+     <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+        <h3>SignIn Now</h3><br><br>
+        {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-danger">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+<form method="post" enctype="multipart/form-data" action="{% url 'user_login' %}">{% csrf_token%}
+                        
+                             <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Username" name="username">
+                                    <label for="subject">Username</label>
+                                </div>
+                            </div><br>
+                             <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="subject" placeholder="Password" name="password">
+                                    <label for="subject">Password</label>
+                                </div>
+                            </div><br>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                   <select class="form-control" name="user_type">
+                                       <option value="">Select</option>
+                                       <option value="Editor">User</option>
+                                       <option value="User">Freelancer</option>
+                                   </select>
+                                    <label for="subject">Select UserType</label>
+                                </div>
+                            </div><br>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">SIGNIN</button>
+                            </div>
+                        </div>
+                    </form>
+    </div>
+</div>
+{% include 'footer.html' %}

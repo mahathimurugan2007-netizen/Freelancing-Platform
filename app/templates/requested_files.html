@@ -1,0 +1,52 @@
+{%include 'user_header.html'%}
+<div class="container" style="margin:10px auto;padding: 50px;background-color: #FFF;">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+    <div class="card" >
+        <h5 class="card-header">All File Details</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background:blue;color: #FFF">
+                        <tr class="white">
+                            <th scope="col" >S.No</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Requested File</th>
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for i in detail %}
+                        <tr style="background:#FFF;color: #000">
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.file_id.title}}</td>
+                            <td>{{i.user_id.name}}</td>
+                            <td>{{i.user_id.email}}</td>
+                            <td>{{i.user_id.mobile}}</td>
+                            <td><a href="{% url 'single_file' pk=i.file_id.id %}" class="btn btn-info">View</a></td>
+                            <td>
+                                {% if i.status == 'Pending' %}
+                                <a href="{% url 'accept' pk=i.id %}" class="btn btn-success" style="background: green;">Accept <a href="{% url 'reject' pk=i.id %}" class="btn btn-danger" style="background: red;">Decline</a></td>
+                                {% elif i.status == 'Accepted' %}
+                                    <span class="badge btn-success" style="background: green;">{{i.status}}</span>
+                                    <a href="{% url 'chat_editor' pk=i.file_id.id %}" style="background: orange;" class="btn btn-warning"><i class="fa fa-comment"></i> Chat</a>
+                                {% else %}
+                                     <span class="badge btn-danger" style="background: red;">{{i.status}}</span>
+
+                                {% endif %}
+                            
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Files</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

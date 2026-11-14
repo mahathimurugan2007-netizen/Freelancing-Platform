@@ -1,0 +1,41 @@
+{% include 'header.html' %}
+{% load static %}
+    
+<div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated" style="padding:30px 0 0 !important;">
+	<span class="subheading">Files</span>
+	<h2 class="mb-4">Job Details</h2>
+	
+  </div>
+
+	
+	<section class="ftco-section">
+    	<div class="container" style="background: #FFF;padding: 20px;">
+    		<div class="row">
+			{% for i in detail %}
+    			<div class="col-lg-6 mb-5 ftco-animate" >
+    				<a href="{{i.image}}" style="width:100%;" class="image-popup"><img src="/media/{{i.image}}" class="img-responsive img-thumbnail" alt="Colorlib Template" style="width:100%"></a>
+    			</div>
+    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+    				<h3>{{i.title}}</h3>
+    				
+						<b><p style="color: #000;">Category Name: {{i.category}} </p></b>
+						<b><p style="color: #000;font-size:20px;">Start Date: {{i.sdate}} </p></b>
+						<b><p style="color: #000;font-size:20px;">End Date: {{i.edate}} </p></b>
+						<b><p style="color: #000;font-size:20px;">Duration: {{i.time}} </p></b>
+						<b><p style="color: green;font-size:20px;">Amount: {{i.price}} </p></b>
+						<b><p style="color: red;font-size:20px;">Project Type: {{i.project_type}} </p></b>
+					<h3>Description</h3>
+					<p style="text-align: justify;">{{i.description}}</p>
+
+						{% if request.session.username %}
+						
+          	<p><a href="{% url 'give_request_user' pk=i.id %}?id={{i.user_id_id}}" class="btn btn-primary">REQUEST A PROJECT</a> </p>
+          	{% endif %}
+					
+    			</div>
+				{% endfor %}
+    		</div>
+    	</div>
+    </section>
+
+{% include 'footer.html' %}

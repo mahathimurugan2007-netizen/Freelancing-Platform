@@ -1,0 +1,48 @@
+{%include 'user_header.html'%}
+<div class="container" style="margin:10px auto;padding: 50px;background-color: #FFF;">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+    <div class="card" >
+        <h5 class="card-header">All Group Project Details</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background:blue;color: #FFF">
+                        <tr class="white">
+                            <th scope="col" >S.No</th>
+                            <th scope="col"> Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">job Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col"> Project Members</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for i in row %}
+                        <tr style="background:#FFF;color: #000">
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.freelancer_id.name}}</td>
+                            <td>{{i.freelancer_id.mobile}}</td>
+                            <td>{{i.job_id.title}}</td>
+                            <td>{{i.job_id.category}}</td>
+                            <td>Rs {{i.job_id.price}} -/-</td>
+
+                            <td>
+                                
+                                     <a href="{% url 'user_view_group_proj' pk=i.job_id_id %}" class="btn btn-success" > <i class="fa fa-eye"> Members</i></a>
+
+                               </td>
+                            
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Projects</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

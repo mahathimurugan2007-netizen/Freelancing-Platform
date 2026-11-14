@@ -1,0 +1,46 @@
+{%include 'user_header.html'%}
+<div class="container" style="margin:10px auto;padding: 50px;background-color: #FFF;">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+    <div class="card" >
+        <h5 class="card-header">Payment Status</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background:blue;color: #FFF">
+                        <tr class="white">
+                            <th scope="col" >JobId</th>
+                            <th scope="col">Job Provider Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Job Title</th>
+                            <th scope="col">Paid Date</th>
+                            <th scope="col">Total Amount</th>
+                            <th scope="col">Paid Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for i in row %}
+                        <tr style="background:#FFF;color: #000">
+                            <th scope="row">{{i.req_id.job_id_id}}</th>
+                            <td>{{i.req_id.freelancer_id.name}}</td>
+                            <td>{{i.req_id.freelancer_id.mobile}}</td>
+                            <td>{{i.req_id.job_id.title}}</td>
+                            <td>{{i.payment_date}}</td>
+                            <td>Rs {{i.req_id.job_id.price}} -/-</td>
+                            <td>Rs {{i.payment_amount}} -/-</td>
+
+                            
+                            
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Projects</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

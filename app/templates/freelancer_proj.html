@@ -1,0 +1,54 @@
+{%include 'user_header.html'%}
+<div class="container" style="margin:10px auto;padding: 50px;background-color: #FFF;">
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+    <div class="card" >
+        <h5 class="card-header">All Accepted Project Details</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background:blue;color: #FFF">
+                        <tr class="white">
+                            <th scope="col" >S.No</th>
+                            <th scope="col">Job Provider Name</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">job Title</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Project Status</th>
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for i in row %}
+                        <tr style="background:#FFF;color: #000">
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.user_id.name}}</td>
+                            <td>{{i.user_id.mobile}}</td>
+                            <td>{{i.job_id.title}}</td>
+                            <td>Rs {{i.job_id.price}} -/-</td>
+                            <td>{% if i.project_status == 'Pending' %} 
+                                <div class="badge badge-danger">{{i.project_status}}</div>
+                                {% elif i.project_status == 'On Progress' %} 
+                                <div class="badge badge-warning">{{i.project_status}}</div>
+                                {% elif i.project_status == 'Completed' %} 
+                                <div class="badge badge-success">{{i.project_status}}</div>
+                            {% endif %}</td>
+                            
+
+                            <td>
+                                
+                                      <a href="{% url 'update_status' pk=i.id %}" class="btn btn-success" style="background: green;">Update Project Status </a>
+                            </td>
+                            
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Projects</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

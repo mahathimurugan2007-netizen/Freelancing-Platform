@@ -1,0 +1,208 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>FREELANCING</title>
+    <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css'  %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendors/font-awesome/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png ' %}" />
+  </head>
+  <body style="background: url({% static 'img/1.jpg' %});">
+  <style>
+  .card-header
+  {
+  background:#82ae46 !important;
+  }
+  .sidebar
+  {
+  height:1000px !important;
+  }
+  </style>
+    <div class="container-scroller">
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+          <a class="sidebar-brand brand-logo" href="{% url 'home' %}" style="text-transform:Uppercase;">FREELANCING</a>
+          
+        </div>
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="{% url 'home' %}" class="nav-link">
+              <div class="nav-profile-image">
+                <img src="/media/{{request.session.edit_img}}" alt="profile" />
+                <span class="login-status online"></span>
+                <!--change to offline or busy as needed-->
+              </div>
+              <div class="nav-profile-text d-flex flex-column pr-3">
+                 {% if request.session.username %}
+                <span class="font-weight-medium mb-2" style="text-transform:Capitalize;">{{request.session.username}}</span>
+                {% else %}
+               <span class="font-weight-medium mb-2" style="text-transform:Capitalize;">{{request.session.editor}}</span>
+               {% endif %}
+              </div>
+             
+            </a>
+          </li>
+        {% if request.session.user_type == 'Editor' %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_file' %}">
+              <i class="mdi mdi-plus-circle menu-icon"></i>
+              <span class="menu-title">Add Job</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_file' %}">
+              <i class="mdi mdi-file menu-icon"></i>
+              <span class="menu-title">Jobs</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'free_job_detail' %}">
+              <i class="mdi mdi-table menu-icon"></i>
+              <span class="menu-title">All Requested Project</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'all_acc_proj' %}">
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              <span class="menu-title">Ongoing Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_group_proj' %}">
+              <i class="mdi mdi-account menu-icon"></i>
+              <span class="menu-title">Group Project</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'payment_list' %}">
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              <span class="menu-title">Payment History</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="{% url 'editor_logout' %}">
+              <i class="mdi mdi-logout menu-icon"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+
+          {% endif %}
+          {% if request.session.user_type == 'User' %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile_page' %}">
+              <i class="mdi mdi-file menu-icon"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'all_files_project' %}">
+              <i class="mdi mdi-arrow-right menu-icon"></i>
+              <span class="menu-title">All Requeted Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'freelancer_proj' %}">
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+              <span class="menu-title">Accepted Project List</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'group_proj' %}">
+              <i class="mdi mdi-account menu-icon"></i>
+              <span class="menu-title">Group Project</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'freencler_payment' %}">
+              <i class="mdi mdi-currency-inr menu-icon"></i>
+              <span class="menu-title">Payment List</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <i class="mdi mdi-logout menu-icon"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
+          {% endif %}
+                </ul>
+      </nav>
+      <div class="container-fluid page-body-wrapper">
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close mdi mdi-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-default-theme">
+            <div class="img-ss rounded-circle bg-light border mr-3"></div> Default
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border mr-3"></div> Dark
+          </div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles light"></div>
+            <div class="tiles dark"></div>
+          </div>
+        </div>
+        <nav class="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+          <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+            <a class="navbar-brand brand-logo-mini align-self-center d-lg-none" href="index.html"><img src="{% static 'assets/images/logo-mini.svg" alt="logo" /></a>
+            <button class="navbar-toggler navbar-toggler align-self-center mr-2" type="button" data-toggle="minimize">
+              <i class="mdi mdi-menu"></i>
+            </button>
+           
+            <ul class="navbar-nav navbar-nav-right ml-lg-auto">
+              
+              <li class="nav-item nav-profile dropdown border-0">
+                <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
+                  <img class="nav-profile-img mr-2" alt="" src="/media/{{request.session.edit_img}}" />
+                  {% if request.session.username %}
+                  <span class="profile-name" style="text-transform:Capitalize;">{{request.session.username}}</span>
+                  {% else %}
+                  <span class="profile-name" style="text-transform:Capitalize;">{{request.session.editor}}</span>
+                  {% endif %}
+                </a>
+                <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
+                  {% if request.session.username %}
+                  <a class="dropdown-item" href="{% url 'logout' %}">
+                    <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                  {% else %}
+                  <a class="dropdown-item" href="{% url 'editor_logout' %}">
+                    <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
+                  {% endif %}
+                </div>
+
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="mdi mdi-menu"></span>
+            </button>
+          </div>
+        </nav>
+ <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'assets/vendors/chart.js' %}/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'assets/vendors/flot/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'assets/vendors/flot/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'assets/vendors/flot/jquery.flot.fillbetween.js' %}"></script>
+    <script src="{% static 'assets/vendors/flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'assets/vendors/flot/jquery.flot.pie.js' %}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+    <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'assets/js/misc.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+       <div class="main-panel" style="background: url({% static 'img/1.jpg' %});background-size:100%;">
+          <div class="content-wrapper pb-0" style="background:transparent !important;">
+            <div class="page-header flex-wrap">

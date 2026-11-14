@@ -1,0 +1,77 @@
+{% include 'header.html' %}
+<div class="container">
+     <div class="col-lg-7 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+        <h3>SignUp Now</h3><br><br>
+        {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+<form method="post" enctype="multipart/form-data">{% csrf_token%}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" name="name">
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" name="email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Mobile" name="mobile">
+                                    <label for="subject">Mobile</label>
+                                </div>
+                            </div>
+                             <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Username" name="username">
+                                    <label for="subject">Username</label>
+                                </div>
+                            </div>
+                             <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="subject" placeholder="Password" name="password">
+                                    <label for="subject">Password</label>
+                                </div>
+                            </div>
+                             <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="file" class="form-control" id="subject" placeholder="Image" name="img">
+                                    <label for="subject">Image</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                   <select class="form-control" name="user_type">
+                                       <option value="">Select</option>
+                                        <option value="Editor">User</option>
+                                       <option value="User">Freelancer</option>
+                                   </select>
+                                    <label for="subject">Select UserType</label>
+                                </div>
+                            </div>
+                             <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Bio" id="message" style="height: 100px" name="bio"></textarea>
+                                    <label for="message">Bio</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Address" id="message" style="height: 100px" name="address"></textarea>
+                                    <label for="message">Address</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">SIGNUP</button>
+                            </div>
+                        </div>
+                    </form>
+    </div>
+</div>
+{% include 'footer.html' %}
